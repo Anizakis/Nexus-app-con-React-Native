@@ -87,6 +87,7 @@ function TabNavigator() {
   );
 }
 
+
 // Navegación por Stack (Principal)
 function AppNavigator() {
   return (
