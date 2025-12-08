@@ -4,8 +4,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
-// Cambiar el import - quitar '../screens/'
+// Importar todas las pantallas
 import LandingScreen from '../screens/LandingScreen';
+import BooksScreen from '../screens/BooksScreen';
+import CoWorkingScreen from '../screens/CoWorkingScreen';
+import CafeScreen from '../screens/CafeScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -23,7 +26,7 @@ function TabNavigator() {
           } else if (route.name === 'Books') {
             iconName = focused ? 'book' : 'book-outline';
           } else if (route.name === 'CoWorking') {
-            iconName = focused ? 'laptop' : 'laptop-outline';
+            iconName = focused ? 'briefcase' : 'briefcase-outline';
           } else if (route.name === 'Cafe') {
             iconName = focused ? 'cafe' : 'cafe-outline';
           }
@@ -32,32 +35,41 @@ function TabNavigator() {
         },
         tabBarActiveTintColor: '#1E40AF',
         tabBarInactiveTintColor: 'gray',
+        tabBarStyle: {
+          paddingBottom: 5,
+          paddingTop: 5,
+          height: 60,
+        },
         headerShown: false,
       })}
     >
+      {/* Pestaña 1: Inicio (Landing) */}
       <Tab.Screen 
         name="Home" 
         component={LandingScreen}
-        options={{ title: 'Inicio' }}
+        options={{ tabBarLabel: 'Inicio' }}
       />
-      {/* Aquí tus compañeros agregarán las otras pantallas */}
-      {/* 
+      
+      {/* Pestaña 2: Libros */}
       <Tab.Screen 
         name="Books" 
         component={BooksScreen}
-        options={{ title: 'Libros' }}
+        options={{ tabBarLabel: 'Libros' }}
       />
+      
+      {/* Pestaña 3: Co-Working */}
       <Tab.Screen 
         name="CoWorking" 
         component={CoWorkingScreen}
-        options={{ title: 'Co-Working' }}
+        options={{ tabBarLabel: 'Co-Working' }}
       />
+      
+      {/* Pestaña 4: Cafetería */}
       <Tab.Screen 
         name="Cafe" 
         component={CafeScreen}
-        options={{ title: 'Cafetería' }}
+        options={{ tabBarLabel: 'Café' }}
       />
-      */}
     </Tab.Navigator>
   );
 }
@@ -82,7 +94,7 @@ function AppNavigator() {
           component={TabNavigator}
           options={{ headerShown: false }}
         />
-        {/* Aquí se pueden agregar más pantallas Stack si es necesario */}
+        {/* Aquí se pueden agregar más pantallas Stack en el futuro */}
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -7,7 +7,8 @@ const HapticButton = ({
   title, 
   className = '',
   textClassName = '',
-  hapticType = 'medium'
+  hapticType = 'medium',
+  icon = ''
 }) => {
   
   const handlePress = () => {
@@ -30,8 +31,9 @@ const HapticButton = ({
   return (
     <Pressable
       onPress={handlePress}
-      className={`bg-primary py-3 px-6 rounded-lg active:opacity-70 ${className}`}
+      className={`bg-primary-600 py-4 px-6 rounded-2xl active:opacity-80 active:scale-95 shadow-medium flex-row items-center justify-center ${className}`}
     >
+      {icon && <Text className="text-2xl mr-2">{icon}</Text>}
       <Text className={`text-white text-center font-poppins-bold text-lg ${textClassName}`}>
         {title}
       </Text>

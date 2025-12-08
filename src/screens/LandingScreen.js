@@ -12,82 +12,172 @@ const LandingScreen = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <ScrollView className="flex-1">
-        {/* Header */}
-        <View className="bg-primary pt-8 pb-12 px-6">
-          <Text className="text-white text-4xl font-poppins-bold mb-2">
+    <SafeAreaView className="flex-1 bg-gray-50">
+      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
+        
+        {/* Header con color azul */}
+        <View className="bg-blue-700 pt-12 pb-16 px-6 rounded-b-3xl">
+          <Text className="text-white text-5xl font-poppins-bold mb-3">
             Nexus
           </Text>
-          <Text className="text-white text-lg font-montserrat">
-            Librería • Co-Working • Cafetería
+          <Text className="text-blue-100 text-lg font-montserrat mb-4">
+            Tu espacio multifuncional
           </Text>
+          {/* Tags */}
+          <View className="flex-row flex-wrap gap-2">
+            <View className="bg-white/20 px-3 py-1 rounded-full">
+              <Text className="text-white text-xs font-montserrat">📚 Librería</Text>
+            </View>
+            <View className="bg-white/20 px-3 py-1 rounded-full">
+              <Text className="text-white text-xs font-montserrat">💼 Co-Working</Text>
+            </View>
+            <View className="bg-white/20 px-3 py-1 rounded-full">
+              <Text className="text-white text-xs font-montserrat">☕ Cafetería</Text>
+            </View>
+          </View>
         </View>
 
         {/* Content */}
         <View className="px-6 py-8">
-          <Text className="text-3xl font-poppins-bold text-gray-800 mb-4">
-            Bienvenido a tu espacio multifuncional
+          {/* Título de bienvenida */}
+          <Text className="text-3xl font-poppins-bold text-gray-800 mb-3">
+            ¡Bienvenido! 👋
           </Text>
-          <Text className="text-base font-montserrat text-gray-600 mb-6 leading-6">
+          <Text className="text-base font-montserrat text-gray-600 mb-8 leading-6">
             Descubre nuestra librería universitaria, trabaja en nuestro espacio 
             de co-working y disfruta de un café mientras estudias o trabajas.
           </Text>
 
-          {/* Botón Libros */}
+          {/* Card Libros - Mejorada */}
           <Pressable
             onPress={() => handlePress('Libros')}
-            className="bg-blue-50 border-2 border-primary rounded-2xl p-5 mb-4 active:opacity-70"
+            className="bg-white rounded-3xl p-6 mb-4 shadow-lg border border-gray-100 active:opacity-80"
           >
-            <Text className="text-3xl text-center mb-2">📚</Text>
-            <Text className="text-lg font-poppins-bold text-gray-800 text-center mb-1">
-              Explorar Catálogo
-            </Text>
-            <Text className="text-xs font-montserrat text-gray-600 text-center">
-              Con Retroalimentación Háptica
-            </Text>
+            <View className="flex-row items-center mb-4">
+              <View className="bg-blue-100 w-16 h-16 rounded-2xl items-center justify-center mr-4">
+                <Text className="text-4xl">📚</Text>
+              </View>
+              <View className="flex-1">
+                <Text className="text-xl font-poppins-bold text-gray-800 mb-1">
+                  Catálogo de Libros
+                </Text>
+                <Text className="text-sm font-montserrat text-gray-500">
+                  Miles de títulos disponibles
+                </Text>
+              </View>
+            </View>
+            <View className="bg-blue-50 px-4 py-3 rounded-xl">
+              <Text className="text-xs font-montserrat text-blue-700 text-center">
+                🎯 Toca para explorar
+              </Text>
+            </View>
           </Pressable>
 
-          {/* Botón Co-Working */}
+          {/* Card Co-Working - Mejorada */}
           <Pressable
             onPress={() => handlePress('CoWorking')}
-            className="bg-purple-50 border-2 border-secondary rounded-2xl p-5 mb-4 active:opacity-70"
+            className="bg-white rounded-3xl p-6 mb-4 shadow-lg border border-gray-100 active:opacity-80"
           >
-            <Text className="text-3xl text-center mb-2">💼</Text>
-            <Text className="text-lg font-poppins-bold text-gray-800 text-center mb-1">
-              Reservar Espacio
-            </Text>
-            <Text className="text-xs font-montserrat text-gray-600 text-center">
-              Con Retroalimentación Háptica
-            </Text>
+            <View className="flex-row items-center mb-4">
+              <View className="bg-purple-100 w-16 h-16 rounded-2xl items-center justify-center mr-4">
+                <Text className="text-4xl">💼</Text>
+              </View>
+              <View className="flex-1">
+                <Text className="text-xl font-poppins-bold text-gray-800 mb-1">
+                  Espacios de Trabajo
+                </Text>
+                <Text className="text-sm font-montserrat text-gray-500">
+                  Reserva tu lugar ideal
+                </Text>
+              </View>
+            </View>
+            <View className="bg-purple-50 px-4 py-3 rounded-xl">
+              <Text className="text-xs font-montserrat text-purple-700 text-center">
+                💡 Espacios disponibles
+              </Text>
+            </View>
           </Pressable>
 
-          {/* Botón Cafetería */}
+          {/* Card Cafetería - Mejorada */}
           <Pressable
             onPress={() => handlePress('Cafe')}
-            className="bg-amber-50 border-2 border-accent rounded-2xl p-5 mb-4 active:opacity-70"
+            className="bg-white rounded-3xl p-6 mb-4 shadow-lg border border-gray-100 active:opacity-80"
           >
-            <Text className="text-3xl text-center mb-2">☕</Text>
-            <Text className="text-lg font-poppins-bold text-gray-800 text-center mb-1">
-              Ver Menú
-            </Text>
-            <Text className="text-xs font-montserrat text-gray-600 text-center">
-              Con Retroalimentación Háptica
-            </Text>
+            <View className="flex-row items-center mb-4">
+              <View className="bg-amber-100 w-16 h-16 rounded-2xl items-center justify-center mr-4">
+                <Text className="text-4xl">☕</Text>
+              </View>
+              <View className="flex-1">
+                <Text className="text-xl font-poppins-bold text-gray-800 mb-1">
+                  Cafetería Nexus
+                </Text>
+                <Text className="text-sm font-montserrat text-gray-500">
+                  Menú variado y delicioso
+                </Text>
+              </View>
+            </View>
+            <View className="bg-amber-50 px-4 py-3 rounded-xl">
+              <Text className="text-xs font-montserrat text-amber-700 text-center">
+                ☕ Ver menú completo
+              </Text>
+            </View>
           </Pressable>
+
+          {/* Información adicional */}
+          <View className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 mt-4 border border-blue-100">
+            <Text className="text-lg font-poppins-bold text-gray-800 mb-4">
+              📍 Información útil
+            </Text>
+            <View className="space-y-3">
+              <View className="flex-row items-center">
+                <View className="bg-white w-10 h-10 rounded-full items-center justify-center mr-3">
+                  <Text className="text-xl">🕐</Text>
+                </View>
+                <Text className="text-sm font-montserrat text-gray-700">
+                  Lun - Vie: 8:00 - 22:00
+                </Text>
+              </View>
+              <View className="flex-row items-center">
+                <View className="bg-white w-10 h-10 rounded-full items-center justify-center mr-3">
+                  <Text className="text-xl">🕐</Text>
+                </View>
+                <Text className="text-sm font-montserrat text-gray-700">
+                  Sábados: 10:00 - 20:00
+                </Text>
+              </View>
+              <View className="flex-row items-center">
+                <View className="bg-white w-10 h-10 rounded-full items-center justify-center mr-3">
+                  <Text className="text-xl">📍</Text>
+                </View>
+                <Text className="text-sm font-montserrat text-gray-700 flex-1">
+                  Campus Universitario - Edificio Principal
+                </Text>
+              </View>
+              <View className="flex-row items-center">
+                <View className="bg-white w-10 h-10 rounded-full items-center justify-center mr-3">
+                  <Text className="text-xl">📞</Text>
+                </View>
+                <Text className="text-sm font-montserrat text-gray-700">
+                  +34 900 123 456
+                </Text>
+              </View>
+            </View>
+          </View>
+
         </View>
 
         {/* Footer */}
         <View className="px-6 pb-8">
-          <View className="bg-gray-100 rounded-xl p-4">
-            <Text className="text-sm font-montserrat text-gray-600 text-center">
-              Horario: Lunes a Viernes 8:00 - 22:00
+          <View className="bg-gray-800 rounded-2xl p-6">
+            <Text className="text-white text-center font-montserrat text-sm mb-2">
+              ✨ Desarrollado con React Native + Expo
             </Text>
-            <Text className="text-sm font-montserrat text-gray-600 text-center mt-1">
-              Sábados 10:00 - 20:00
+            <Text className="text-gray-400 text-center font-montserrat text-xs">
+              Proyecto Nexus © 2024 - UNIR
             </Text>
           </View>
         </View>
+
       </ScrollView>
     </SafeAreaView>
   );
