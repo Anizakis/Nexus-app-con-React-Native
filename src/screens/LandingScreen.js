@@ -8,7 +8,21 @@ const LandingScreen = ({ navigation }) => {
   const handlePress = (screenName) => {
     // Retroalimentación háptica
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    console.log(`Navegando a: ${screenName}`);
+    
+    // Navegar a la pantalla correspondiente
+    switch(screenName) {
+      case 'Libros':
+        navigation.navigate('Books');
+        break;
+      case 'CoWorking':
+        navigation.navigate('CoWorking');
+        break;
+      case 'Cafe':
+        navigation.navigate('Cafe');
+        break;
+      default:
+        console.log(`Navegando a: ${screenName}`);
+    }
   };
 
   return (
@@ -48,7 +62,7 @@ const LandingScreen = ({ navigation }) => {
             de co-working y disfruta de un café mientras estudias o trabajas.
           </Text>
 
-          {/* Card Libros - Mejorada */}
+          {/* Card Libros - CON NAVEGACIÓN */}
           <Pressable
             onPress={() => handlePress('Libros')}
             className="bg-white rounded-3xl p-6 mb-4 shadow-lg border border-gray-100 active:opacity-80"
@@ -68,12 +82,12 @@ const LandingScreen = ({ navigation }) => {
             </View>
             <View className="bg-blue-50 px-4 py-3 rounded-xl">
               <Text className="text-xs font-montserrat text-blue-700 text-center">
-                🎯 Toca para explorar
+                🎯 Toca para explorar • Con feedback háptico
               </Text>
             </View>
           </Pressable>
 
-          {/* Card Co-Working - Mejorada */}
+          {/* Card Co-Working - CON NAVEGACIÓN */}
           <Pressable
             onPress={() => handlePress('CoWorking')}
             className="bg-white rounded-3xl p-6 mb-4 shadow-lg border border-gray-100 active:opacity-80"
@@ -93,12 +107,12 @@ const LandingScreen = ({ navigation }) => {
             </View>
             <View className="bg-purple-50 px-4 py-3 rounded-xl">
               <Text className="text-xs font-montserrat text-purple-700 text-center">
-                💡 Espacios disponibles
+                💡 Espacios disponibles • Con feedback háptico
               </Text>
             </View>
           </Pressable>
 
-          {/* Card Cafetería - Mejorada */}
+          {/* Card Cafetería - CON NAVEGACIÓN */}
           <Pressable
             onPress={() => handlePress('Cafe')}
             className="bg-white rounded-3xl p-6 mb-4 shadow-lg border border-gray-100 active:opacity-80"
@@ -118,7 +132,7 @@ const LandingScreen = ({ navigation }) => {
             </View>
             <View className="bg-amber-50 px-4 py-3 rounded-xl">
               <Text className="text-xs font-montserrat text-amber-700 text-center">
-                ☕ Ver menú completo
+                ☕ Ver menú completo • Con feedback háptico
               </Text>
             </View>
           </Pressable>
