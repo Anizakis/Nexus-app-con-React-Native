@@ -1,0 +1,117 @@
+// Coworking spaces data
+export const coWorkingSpacesData = [
+  {
+    id: 1,
+    name: 'Sala Ejecutiva Premium',
+    description: 'Espacio privado con escritorio ejecutivo, silla ergonómica y vista panorámica',
+    type: 'Individual',
+    capacity: 1,
+    pricePerHour: 8.50,
+    pricePerDay: 45.00,
+    amenities: ['WiFi de alta velocidad', 'Café ilimitado', 'Estacionamiento', 'Aire acondicionado'],
+    available: true,
+    emoji: '👔',
+    rating: 4.8,
+    reviews: 23
+  },
+  {
+    id: 2,
+    name: 'Sala de Reuniones Tech',
+    description: 'Sala equipada con pantalla 4K, pizarra digital y sistema de videoconferencia',
+    type: 'Grupal',
+    capacity: 8,
+    pricePerHour: 25.00,
+    pricePerDay: 120.00,
+    amenities: ['Pantalla 4K 55"', 'Sistema de video', 'Pizarra digital', 'WiFi premium', 'Café y snacks'],
+    available: true,
+    emoji: '💻',
+    rating: 4.9,
+    reviews: 45
+  },
+  {
+    id: 3,
+    name: 'Espacio Compartido Creativo',
+    description: 'Área abierta con mesas de trabajo compartidas, ideal para freelancers y equipos pequeños',
+    type: 'Compartido',
+    capacity: 15,
+    pricePerHour: 4.50,
+    pricePerDay: 22.00,
+    amenities: ['WiFi ilimitado', 'Impresora', 'Café gratis', 'Zona de descanso', 'Estacionamiento gratuito'],
+    available: true,
+    emoji: '🎨',
+    rating: 4.6,
+    reviews: 78
+  },
+  {
+    id: 4,
+    name: 'Oficina Privada Startup',
+    description: 'Oficina privada con capacidad para 4 personas, perfecta para equipos de startup',
+    type: 'Privada',
+    capacity: 4,
+    pricePerHour: 18.00,
+    pricePerDay: 85.00,
+    amenities: ['WiFi dedicado', 'Nevera privada', 'Pizarra', 'Café premium', 'Estacionamiento cubierto'],
+    available: true,
+    emoji: '🚀',
+    rating: 4.7,
+    reviews: 34
+  },
+  {
+    id: 5,
+    name: 'Sala de Brainstorming',
+    description: 'Espacio creativo con paredes pintables, muebles modulares y ambiente inspirador',
+    type: 'Grupal',
+    capacity: 6,
+    pricePerHour: 15.00,
+    pricePerDay: 70.00,
+    amenities: ['Paredes pintables', 'Muebles modulares', 'WiFi', 'Bebidas energéticas', 'Material creativo'],
+    available: false,
+    emoji: '💡',
+    rating: 4.5,
+    reviews: 19
+  },
+  {
+    id: 6,
+    name: 'Puesto de Trabajo Express',
+    description: 'Estación de trabajo básica con todo lo necesario para una sesión rápida de trabajo',
+    type: 'Individual',
+    capacity: 1,
+    pricePerHour: 3.50,
+    pricePerDay: 18.00,
+    amenities: ['WiFi básico', 'Enchufes USB', 'Café incluido'],
+    available: true,
+    emoji: '💺',
+    rating: 4.3,
+    reviews: 156
+  },
+  {
+    id: 7,
+    name: 'Sala VIP Ejecutivo',
+    description: 'Suite ejecutiva con servicios premium, asistente personal y catering opcional',
+    type: 'VIP',
+    capacity: 2,
+    pricePerHour: 35.00,
+    pricePerDay: 180.00,
+    amenities: ['Asistente personal', 'Catering premium', 'WiFi dedicado', 'Sala de espera', 'Estacionamiento VIP'],
+    available: true,
+    emoji: '👑',
+    rating: 5.0,
+    reviews: 12
+  },
+  {
+    id: 8,
+    name: 'Terraza de Trabajo',
+    description: 'Espacio al aire libre con mesas de trabajo y conexión WiFi, ideal para días soleados',
+    type: 'Exterior',
+    capacity: 12,
+    pricePerHour: 6.00,
+    pricePerDay: 28.00,
+    amenities: ['Terraza al aire libre', 'WiFi', 'Bebidas refrescantes', 'Protección UV', 'Vistas panorámicas'],
+    available: true,
+    emoji: '🌞',
+    rating: 4.4,
+    reviews: 67
+  }
+];
+
+export default coWorkingSpacesData;

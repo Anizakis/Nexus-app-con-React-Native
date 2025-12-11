@@ -1,8 +1,36 @@
-import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useCart } from '../context/CartContext';
+import HapticButton from '../components/HapticButton';
+import { cafeMenuData } from '../constants/cafeMenu';
 
 const CafeScreen = () => {
+  const { addItem, count } = useCart();
+  const [menu, setMenu] = useState([]);
+
+  useEffect(() => {
+    // Simulate loading the menu data
+    setMenu(cafeMenuData);
+  }, []);
+
+  const handleAddToCart = (item) => {
+    addItem({
+      id: item.id,
+      nombre: item.name,
+      precio: item.price,
+      emoji: item.emoji,
+      category: item.category
+    });
+    Alert.alert(
+      'Producto agregado',
+      `${item.name} se agregó al carrito`,
+      [{ text: 'OK' }]
+    );
+  };
+
+  const categories = ['Bebidas Calientes', 'Bebidas Frías', 'Comidas', 'Postres'];
+
   return (
     <SafeAreaView className="flex-1 bg-gray-50">
       <ScrollView className="flex-1">
@@ -14,43 +42,84 @@ const CafeScreen = () => {
           <Text className="text-amber-100 text-base font-montserrat">
             Disfruta de nuestro menú variado
           </Text>
+          {count > 0 && (
+            <View className="bg-white bg-opacity-20 rounded-full px-3 py-1 mt-3 self-start">
+              <Text className="text-white text-sm font-montserrat">
+                🛒 {count} item{count !== 1 ? 's' : ''} en carrito
+              </Text>
+            </View>
+          )}
         </View>
 
-        {/* Contenido */}
-        <View className="px-6 py-8">
-          <View className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
-            <Text className="text-6xl text-center mb-4">🍰</Text>
-            <Text className="text-2xl font-poppins-bold text-gray-800 text-center mb-3">
-              Próximamente
+        {/* Banner de ofertas */}
+        <View className="mx-6 mt-6 mb-4">
+          <View className="bg-gradient-to-r from-amber-500 to-orange-500 rounded-3xl p-6 shadow-lg">
+            <View className="flex-row items-center mb-3">
+              <Text className="text-3xl mr-3">🎉</Text>
+              <Text className="text-white text-xl font-poppins-bold">
+                ¡Oferta Especial!
+              </Text>
+            </View>
+            <Text className="text-amber-100 text-base font-montserrat mb-3">
+              2x1 en cafés premium los miércoles
             </Text>
-            <Text className="text-base font-montserrat text-gray-600 text-center mb-4">
-              Esta pantalla será desarrollada por tu compañero.
-            </Text>
-            <View className="bg-amber-50 p-4 rounded-xl mt-4">
-              <Text className="text-sm font-montserrat text-amber-700 text-center">
-                ✅ Navegación funcionando correctamente
+            <View className="bg-white bg-opacity-20 rounded-xl px-4 py-2">
+              <Text className="text-white text-sm font-montserrat text-center">
+                ⏰ Solo hoy • Válido hasta las 8:00 PM
               </Text>
             </View>
           </View>
+        </View>
 
-          {/* Info adicional */}
-          <View className="bg-amber-100 rounded-2xl p-6 mt-6">
-            <Text className="text-base font-poppins-bold text-gray-800 mb-2">
-              Funcionalidades planificadas:
-            </Text>
-            <Text className="text-sm font-montserrat text-gray-700 mb-1">
-              • Menú completo de bebidas y comidas
-            </Text>
-            <Text className="text-sm font-montserrat text-gray-700 mb-1">
-              • Sistema de pedidos
-            </Text>
-            <Text className="text-sm font-montserrat text-gray-700 mb-1">
-              • Ofertas y promociones
-            </Text>
-            <Text className="text-sm font-montserrat text-gray-700">
-              • Programa de fidelización
-            </Text>
-          </View>
+        {/* Contenido del menú */}
+        <View className="px-6 pb-8">
+          {categories.map(category => {
+            const categoryItems = menu.filter(item => item.category === category);
+            if (categoryItems.length === 0) return null;
+
+            return (
+              <View key={category} className="mb-8">
+                <View className="flex-row items-center mb-4">
+                  <Text className="text-xl font-poppins-bold text-gray-800 mr-3">
+                    {category}
+                  </Text>
+                  <View className="flex-1 h-px bg-gray-300"></View>
+                </View>
+
+                {categoryItems.map(item => (
+                  <View key={item.id} className="bg-white rounded-2xl p-4 mb-4 shadow-md border border-gray-100">
+                    <View className="flex-row">
+                      {/* Imagen del producto */}
+                      <View className="w-20 h-20 bg-amber-50 rounded-xl items-center justify-center mr-4">
+                        <Text className="text-3xl">{item.emoji}</Text>
+                      </View>
+
+                      {/* Información del producto */}
+                      <View className="flex-1">
+                        <Text className="text-lg font-poppins-bold text-gray-800 mb-1">
+                          {item.name}
+                        </Text>
+                        <Text className="text-sm font-montserrat text-gray-600 mb-2 leading-5">
+                          {item.description}
+                        </Text>
+                        <View className="flex-row justify-between items-center">
+                          <Text className="text-xl font-poppins-bold text-amber-600">
+                            ${item.price.toFixed(2)}
+                          </Text>
+                          <HapticButton
+                            title="Agregar al carrito"
+                            onPress={() => handleAddToCart(item)}
+                            className="bg-amber-600 px-4 py-2"
+                            textClassName="text-sm"
+                          />
+                        </View>
+                      </View>
+                    </View>
+                  </View>
+                ))}
+              </View>
+            );
+          })}
         </View>
       </ScrollView>
     </SafeAreaView>
