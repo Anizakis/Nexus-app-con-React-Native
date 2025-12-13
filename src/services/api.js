@@ -58,21 +58,22 @@ export const fetchCoWorkingSpaces = async () => {
 };
 
 /**
- * Obtener menú de la cafetería
+ * Obtener productos de la cafetería
  */
-export const fetchCafeMenu = async () => {
+export const fetchProducts = async () => {
   try {
-    const response = await fetch(`${API_BASE_URL}/cafe`);
+    const response = await fetch(`${API_BASE_URL}/products`);
     if (!response.ok) {
-      throw new Error('Error al obtener el menú de la cafetería');
+      throw new Error(`Error HTTP: ${response.status}`);
     }
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error('Error fetching cafe menu:', error);
-    throw error;
+    console.error('Error fetching products:', error);
+    throw new Error('No se pudieron cargar los productos.');
   }
 };
+
 
 /**
  * Realizar reserva de espacio co-working
@@ -100,7 +101,7 @@ export const bookCoWorkingSpace = async (reservationData) => {
 export default {
   fetchBooks,
   fetchBookById,
+  fetchProducts,
   fetchCoWorkingSpaces,
-  fetchCafeMenu,
   bookCoWorkingSpace,
 };
