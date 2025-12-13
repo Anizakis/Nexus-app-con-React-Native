@@ -2,12 +2,15 @@ import React, { useState, useMemo } from 'react';
 import { View, Text, ScrollView, Image, ActivityIndicator, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as Haptics from 'expo-haptics';
+import { Ionicons } from '@expo/vector-icons';
 import { useApi } from '../hooks/useApi';
 import { fetchProducts } from '../services/api';
+import { useCart } from '../context/CartContext';
 import HapticButton from '../components/HapticButton';
 
-const CafeScreen = () => {
+const CafeScreen = ({ navigation }) => {
   const { data: products, loading, error, refetch } = useApi(fetchProducts);
+  const { addItem, count } = useCart();
   const [selectedCategory, setSelectedCategory] = useState('all');
   
   const categories = useMemo(() => {
@@ -21,31 +24,59 @@ const CafeScreen = () => {
       ? products 
       : products.filter(product => product.category === selectedCategory);
   }, [products, selectedCategory]);
+
+  const handleAddToCart = (item) => {
+    addItem({
+      id: item.id,
+      nombre: item.name || item.title,
+      precio: item.price,
+      category: item.category
+    }, 'cafe');
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-gray-50">
       <ScrollView className="flex-1">
         <View className="bg-amber-600 pt-8 pb-12 px-6 rounded-b-3xl">
-          <Text className="text-white text-4xl font-poppins-bold mb-2">
-            ☕ Cafetería Nexus
-          </Text>
-          <Text className="text-amber-100 text-base font-montserrat">
-            Disfruta de nuestro menú variado
-          </Text>
+          <View className="flex-row items-center justify-between mb-4">
+            <View className="flex-1">
+              <Text className="text-white text-4xl font-poppins-bold mb-1">
+                ☕ Cafetería Nexus
+              </Text>
+              <Text className="text-amber-100 text-base font-montserrat">
+                Disfruta de nuestro menú variado
+              </Text>
+            </View>
+            <Pressable
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                navigation.navigate('Cart');
+              }}
+              className="bg-white/10 rounded-full p-2 relative"
+            >
+              <Ionicons name="cart" size={24} color="#fff" />
+              {count > 0 && (
+                <View className="absolute -top-1 -right-1 bg-red-500 rounded-full w-5 h-5 items-center justify-center">
+                  <Text className="text-white text-xs font-poppins-bold">{count}</Text>
+                </View>
+              )}
+            </Pressable>
+          </View>
         </View>
 
         <View className="mx-6 mt-6 mb-4">
-          <View className="bg-gradient-to-r from-amber-500 to-orange-500 rounded-3xl p-6 shadow-lg">
+          <View className="bg-gradient-to-b from-amber-400 to-amber-500 rounded-3xl p-6 shadow-lg">
             <View className="flex-row items-center mb-3">
               <Text className="text-3xl mr-3">🎉</Text>
-              <Text className="text-white text-xl font-poppins-bold">
+              <Text className="text-amber-900 text-xl font-poppins-bold">
                 ¡Oferta Especial!
               </Text>
             </View>
-            <Text className="text-amber-100 text-base font-montserrat mb-3">
+            <Text className="text-amber-800 text-base font-montserrat mb-3">
               2x1 en cafés premium los miércoles
             </Text>
-            <View className="bg-white bg-opacity-20 rounded-xl px-4 py-2">
-              <Text className="text-white text-sm font-montserrat text-center">
+            <View className="bg-white bg-opacity-30 rounded-xl px-4 py-2">
+              <Text className="text-amber-900 text-sm font-montserrat text-center font-bold">
                 ⏰ Solo hoy • Válido hasta las 8:00 PM
               </Text>
             </View>
@@ -155,9 +186,7 @@ const CafeScreen = () => {
                         </Text>
                         <HapticButton
                           title="Agregar"
-                          onPress={() => {
-                            console.log('Agregar al carrito:', item.name || item.title);
-                          }}
+                          onPress={() => handleAddToCart(item)}
                           className="bg-amber-600 px-4 py-2"
                           textClassName="text-sm"
                         />

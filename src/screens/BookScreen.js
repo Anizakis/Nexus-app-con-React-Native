@@ -40,7 +40,7 @@ const BookScreen = ({ route, navigation }) => {
   const handleAddCart = useCallback(() => {
     if (!book) return;
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    addItem(book);
+    addItem(book, 'book');
     Toast.show({
       type: 'success',
       text1: 'Agregado al carrito',

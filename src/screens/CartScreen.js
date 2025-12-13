@@ -43,7 +43,7 @@ const CartScreen = ({ navigation }) => {
 
       <FlatList
         data={items}
-        keyExtractor={(item) => item.id?.toString()}
+        keyExtractor={(item) => `${item.type}-${item.id}`}
         contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 24 }}
         ListEmptyComponent={
           <View className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">

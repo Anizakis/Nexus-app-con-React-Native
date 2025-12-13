@@ -36,6 +36,15 @@ function CafeStack() {
   );
 }
 
+// Stack de Co-Working
+function CoWorkingStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="CoWorkingMain" component={CoWorkingScreen} />
+    </Stack.Navigator>
+  );
+}
+
 // Navegación por Tabs (Bottom Tabs)
 function TabNavigator() {
   return (
@@ -83,7 +92,7 @@ function TabNavigator() {
       {/* Pestaña 3: Co-Working */}
       <Tab.Screen 
         name="CoWorking" 
-        component={CoWorkingScreen}
+        component={CoWorkingStack}
         options={{ tabBarLabel: 'Co-Working' }}
       />
       
