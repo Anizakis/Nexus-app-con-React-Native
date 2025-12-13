@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, Pressable, Image } from 'react-native';
+import { View, Text, FlatList, Pressable, Image, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as Haptics from 'expo-haptics';
 import { Ionicons } from '@expo/vector-icons';
@@ -10,7 +10,11 @@ const CartScreen = ({ navigation }) => {
 
   const handleRemove = (id) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    removeItem(id);
+    // Encontrar el item para obtener su tipo
+    const item = items.find(i => i.id === id);
+    if (item) {
+      removeItem(id, item.type);
+    }
   };
 
   const handleClear = () => {
@@ -43,28 +47,36 @@ const CartScreen = ({ navigation }) => {
         contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 24 }}
         ListEmptyComponent={
           <View className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
-            <Text className="text-6xl text-center mb-4">📚</Text>
+            <Text className="text-6xl text-center mb-4">🛒</Text>
             <Text className="font-poppins-bold text-xl text-gray-800 text-center mb-2">
               Tu carrito está vacío
             </Text>
             <Text className="font-montserrat text-gray-600 text-center">
-              Agrega libros desde el catálogo
+              Agrega productos desde el catálogo o cafetería
             </Text>
           </View>
         }
         renderItem={({ item }) => (
           <View className="bg-white rounded-3xl p-4 mb-3 shadow-xl shadow-black/10 border border-gray-100 flex-row">
-            <Image
-              source={item.imagen ? { uri: item.imagen } : null}
-              className="w-20 h-28 bg-gray-200 rounded-2xl mr-4"
-              resizeMode="cover"
-            />
+            {/* Imagen o emoji del producto */}
+            {item.imagen ? (
+              <Image
+                source={{ uri: item.imagen }}
+                className="w-20 h-28 bg-gray-200 rounded-2xl mr-4"
+                resizeMode="cover"
+              />
+            ) : (
+              <View className="w-20 h-20 bg-amber-50 rounded-xl items-center justify-center mr-4">
+                <Text className="text-3xl">{item.emoji || '📦'}</Text>
+              </View>
+            )}
+
             <View className="flex-1">
               <Text className="font-poppins-bold text-base text-gray-900 mb-1" numberOfLines={2}>
-                {item.titulo}
+                {item.nombre || item.titulo || item.name}
               </Text>
               <Text className="font-montserrat text-sm text-gray-600 mb-2">
-                {item.autor || 'Autor Desconocido'}
+                {item.autor || item.category || 'Producto'}
               </Text>
               <View className="flex-row items-center justify-between">
                 <View>
@@ -112,7 +124,30 @@ const CartScreen = ({ navigation }) => {
                 </Text>
               </Pressable>
 
-              <Pressable className="bg-blue-700 rounded-2xl py-4 px-6 shadow-lg shadow-blue-700/30 active:bg-blue-800">
+              <Pressable
+                onPress={() => {
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                  // Mostrar información de pago
+                  Alert.alert(
+                    'Información de Pago',
+                    `Total a pagar: $${total.toFixed(2)}\n\nMétodos de pago disponibles:\n• Tarjeta de crédito/débito\n• Efectivo en tienda\n• Transferencia bancaria\n\nPara completar tu compra, acércate a la caja con este resumen.`,
+                    [
+                      { text: 'Cancelar', style: 'cancel' },
+                      {
+                        text: 'Confirmar Pedido',
+                        onPress: () => {
+                          Alert.alert(
+                            'Pedido Confirmado',
+                            'Tu pedido ha sido registrado. Por favor, acércate a la caja para completar el pago.',
+                            [{ text: 'OK', onPress: () => clear() }]
+                          );
+                        }
+                      }
+                    ]
+                  );
+                }}
+                className="bg-blue-700 rounded-2xl py-4 px-6 shadow-lg shadow-blue-700/30 active:bg-blue-800"
+              >
                 <Text className="text-white text-lg font-poppins-bold text-center">
                   Proceder al pago
                 </Text>

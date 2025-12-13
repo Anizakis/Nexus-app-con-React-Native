@@ -5,19 +5,19 @@ const CartContext = createContext(null);
 export const CartProvider = ({ children }) => {
   const [items, setItems] = useState([]);
 
-  const addItem = useCallback((book) => {
-    if (!book?.id) return;
+  const addItem = useCallback((item, type = 'book') => {
+    if (!item?.id) return;
     setItems((prev) => {
-      const existing = prev.find((i) => i.id === book.id);
+      const existing = prev.find((i) => i.id === item.id && i.type === type);
       if (existing) {
-        return prev.map((i) => i.id === book.id ? { ...i, qty: i.qty + 1 } : i);
+        return prev.map((i) => i.id === item.id && i.type === type ? { ...i, qty: i.qty + 1 } : i);
       }
-      return [...prev, { ...book, qty: 1 }];
+      return [...prev, { ...item, qty: 1, type }];
     });
   }, []);
 
-  const removeItem = useCallback((id) => {
-    setItems((prev) => prev.filter((i) => i.id !== id));
+  const removeItem = useCallback((id, type) => {
+    setItems((prev) => prev.filter((i) => !(i.id === id && i.type === type)));
   }, []);
 
   const clear = useCallback(() => setItems([]), []);

@@ -26,6 +26,16 @@ function BooksStack() {
   );
 }
 
+// Stack de Cafetería
+function CafeStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="CafeMain" component={CafeScreen} />
+      <Stack.Screen name="Cart" component={CartScreen} />
+    </Stack.Navigator>
+  );
+}
+
 // Navegación por Tabs (Bottom Tabs)
 function TabNavigator() {
   return (
@@ -78,9 +88,9 @@ function TabNavigator() {
       />
       
       {/* Pestaña 4: Cafetería */}
-      <Tab.Screen 
-        name="Cafe" 
-        component={CafeScreen}
+      <Tab.Screen
+        name="Cafe"
+        component={CafeStack}
         options={{ tabBarLabel: 'Café' }}
       />
     </Tab.Navigator>
