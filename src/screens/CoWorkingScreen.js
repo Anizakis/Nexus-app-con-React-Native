@@ -410,17 +410,17 @@ const CoWorkingScreen = () => {
         {/* Calendar Container - Google Calendar Style */}
         <View className="bg-white rounded-2xl shadow-2xl overflow-hidden">
           {/* Header */}
-          <View className="bg-gradient-to-r from-purple-600 to-indigo-600 p-6">
-            <View className="flex-row justify-between items-center mb-4">
+          <View className="bg-gradient-to-r from-purple-600 to-indigo-600 p-4 md:p-6">
+            <View className="flex-row justify-between items-center mb-3 md:mb-4">
               <TouchableOpacity
-                className="w-10 h-10 bg-white bg-opacity-20 rounded-full items-center justify-center"
+                className={`${width < 400 ? 'w-8 h-8' : 'w-10 h-10'} bg-white bg-opacity-20 rounded-full items-center justify-center`}
                 onPress={() => navigateMonth(-1)}
               >
-                <Text className="text-white text-xl font-bold">‹</Text>
+                <Text className={`text-white ${width < 400 ? 'text-lg' : 'text-xl'} font-bold`}>‹</Text>
               </TouchableOpacity>
 
-              <View className="flex-1 mx-4">
-                <Text className="text-2xl font-poppins-bold text-white text-center">
+              <View className={`${width < 400 ? 'mx-2' : 'mx-4'} flex-1`}>
+                <Text className={`${width < 400 ? 'text-lg' : 'text-2xl'} font-poppins-bold text-white text-center`}>
                   {new Date(selectedYear, selectedMonth).toLocaleDateString('es-ES', {
                     month: 'long',
                     year: 'numeric'
@@ -429,30 +429,30 @@ const CoWorkingScreen = () => {
               </View>
 
               <TouchableOpacity
-                className="w-10 h-10 bg-white bg-opacity-20 rounded-full items-center justify-center"
+                className={`${width < 400 ? 'w-8 h-8' : 'w-10 h-10'} bg-white bg-opacity-20 rounded-full items-center justify-center`}
                 onPress={() => navigateMonth(1)}
               >
-                <Text className="text-white text-xl font-bold">›</Text>
+                <Text className={`text-white ${width < 400 ? 'text-lg' : 'text-xl'} font-bold`}>›</Text>
               </TouchableOpacity>
             </View>
 
             {/* Today Button */}
             <TouchableOpacity
-              className="bg-white bg-opacity-20 rounded-xl py-2 px-4 self-center"
+              className={`bg-white bg-opacity-20 rounded-xl ${width < 400 ? 'py-2 px-3' : 'py-2 px-4'} self-center`}
               onPress={() => {
                 setCalendarDate(new Date());
                 setSelectedDate(null);
               }}
             >
-              <Text className="text-white font-poppins-bold text-sm">Hoy</Text>
+              <Text className={`text-white font-poppins-bold ${width < 400 ? 'text-xs' : 'text-sm'}`}>Hoy</Text>
             </TouchableOpacity>
           </View>
 
           {/* Days of Week Header */}
           <View className="flex-row bg-gray-50 border-b border-gray-200">
             {['DOM', 'LUN', 'MAR', 'MIÉ', 'JUE', 'VIE', 'SÁB'].map((day, index) => (
-              <View key={day} className="flex-1 p-3 items-center">
-                <Text className={`text-sm font-poppins-bold ${
+              <View key={day} className={`flex-1 ${width < 400 ? 'p-2' : 'p-3'} items-center`}>
+                <Text className={`${width < 400 ? 'text-xs' : 'text-sm'} font-poppins-bold ${
                   index === 0 ? 'text-red-600' :
                   index === 6 ? 'text-blue-600' :
                   'text-gray-700'
@@ -474,7 +474,7 @@ const CoWorkingScreen = () => {
                   return (
                     <TouchableOpacity
                       key={dayIndex}
-                      className={`flex-1 aspect-square p-2 items-center justify-start border-r border-gray-100 last:border-r-0 ${
+                      className={`flex-1 aspect-square ${width < 400 ? 'p-1' : 'p-2'} items-center justify-start border-r border-gray-100 last:border-r-0 ${
                         dayInfo.isSelected
                           ? 'bg-purple-100 border-purple-300'
                           : dayInfo.isToday
@@ -488,7 +488,7 @@ const CoWorkingScreen = () => {
                     >
                       <View className="w-full h-full items-center justify-start">
                         {/* Day Number */}
-                        <Text className={`text-base font-poppins-bold mb-1 ${
+                        <Text className={`${width < 400 ? 'text-sm' : 'text-base'} font-poppins-bold ${width < 400 ? 'mb-0.5' : 'mb-1'} ${
                           dayInfo.isPast
                             ? 'text-gray-400'
                             : !dayInfo.isCurrentMonth
@@ -506,11 +506,11 @@ const CoWorkingScreen = () => {
                         {dayInfo.isCurrentMonth && !dayInfo.isPast && (
                           <View className="flex-row items-center">
                             {hasAvailability ? (
-                              <View className="w-2 h-2 bg-green-500 rounded-full mr-1"></View>
+                              <View className={`${width < 400 ? 'w-1.5 h-1.5' : 'w-2 h-2'} bg-green-500 rounded-full mr-1`}></View>
                             ) : (
-                              <View className="w-2 h-2 bg-red-400 rounded-full mr-1"></View>
+                              <View className={`${width < 400 ? 'w-1.5 h-1.5' : 'w-2 h-2'} bg-red-400 rounded-full mr-1`}></View>
                             )}
-                            <Text className={`text-xs font-montserrat ${
+                            <Text className={`${width < 400 ? 'text-xs' : 'text-xs'} font-montserrat ${
                               hasAvailability ? 'text-green-600' : 'text-red-500'
                             }`}>
                               {availability}
@@ -520,7 +520,7 @@ const CoWorkingScreen = () => {
 
                         {/* Today Indicator */}
                         {dayInfo.isToday && (
-                          <View className="absolute -top-1 -right-1 w-3 h-3 bg-blue-600 rounded-full border-2 border-white"></View>
+                          <View className={`absolute -top-1 -right-1 ${width < 400 ? 'w-2 h-2' : 'w-3 h-3'} bg-blue-600 rounded-full border-2 border-white`}></View>
                         )}
 
                         {/* Selected Indicator */}
@@ -536,37 +536,45 @@ const CoWorkingScreen = () => {
           </View>
 
           {/* Footer with Quick Actions */}
-          <View className="p-4 bg-gray-50 border-t border-gray-200">
-            <View className="flex-row justify-between items-center">
-              <View className="flex-row items-center">
+          <View className="p-3 md:p-4 bg-gray-50 border-t border-gray-200">
+            {/* Primera fila: Disponible y Ocupado */}
+            <View className="flex-row items-center justify-center mb-3">
+              <View className="flex-row items-center mr-4">
                 <View className="w-3 h-3 bg-green-500 rounded-full mr-2"></View>
-                <Text className="text-xs font-montserrat text-gray-600 mr-4">Disponible</Text>
+                <Text className="text-xs font-montserrat text-gray-600">Disponible</Text>
+              </View>
+              <View className="flex-row items-center">
                 <View className="w-3 h-3 bg-red-400 rounded-full mr-2"></View>
                 <Text className="text-xs font-montserrat text-gray-600">Ocupado</Text>
               </View>
+            </View>
 
-              <View className="flex-row">
-                <TouchableOpacity
-                  className="bg-purple-600 rounded-lg py-2 px-4 mr-2"
-                  onPress={() => setActiveTab('list')}
-                >
-                  <Text className="text-white text-sm font-poppins-bold">Ver Espacios</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  className="bg-indigo-600 rounded-lg py-2 px-4"
-                  onPress={() => setActiveTab('floors')}
-                >
-                  <Text className="text-white text-sm font-poppins-bold">Ver Plantas</Text>
-                </TouchableOpacity>
-              </View>
+            {/* Segunda fila: Botones */}
+            <View className={`flex-row ${width < 400 ? 'space-x-2' : 'space-x-3'} justify-center`}>
+              <TouchableOpacity
+                className={`bg-purple-600 rounded-lg ${width < 400 ? 'py-2 px-3 flex-1' : 'py-2 px-4'}`}
+                onPress={() => setActiveTab('list')}
+              >
+                <Text className={`text-white ${width < 400 ? 'text-xs' : 'text-sm'} font-poppins-bold text-center`}>
+                  {width < 400 ? 'Espacios' : 'Ver Espacios'}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                className={`bg-indigo-600 rounded-lg ${width < 400 ? 'py-2 px-3 flex-1' : 'py-2 px-4'}`}
+                onPress={() => setActiveTab('floors')}
+              >
+                <Text className={`text-white ${width < 400 ? 'text-xs' : 'text-sm'} font-poppins-bold text-center`}>
+                  {width < 400 ? 'Plantas' : 'Ver Plantas'}
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
 
         {/* Selected Date Details */}
         {selectedDate && (
-          <View className="mt-4 bg-white rounded-2xl p-4 shadow-lg">
-            <Text className="text-lg font-poppins-bold text-gray-800 mb-2">
+          <View className={`mt-4 bg-white rounded-2xl ${width < 400 ? 'p-3' : 'p-4'} shadow-lg`}>
+            <Text className={`${width < 400 ? 'text-base' : 'text-lg'} font-poppins-bold text-gray-800 mb-2`}>
               📅 {selectedDate.toLocaleDateString('es-ES', {
                 weekday: 'long',
                 year: 'numeric',
@@ -574,7 +582,7 @@ const CoWorkingScreen = () => {
                 day: 'numeric'
               })}
             </Text>
-            <Text className="text-sm font-montserrat text-gray-600">
+            <Text className={`${width < 400 ? 'text-xs' : 'text-sm'} font-montserrat text-gray-600`}>
               {availableSpacesForDate(selectedDate)} espacios disponibles
             </Text>
           </View>
