@@ -10,7 +10,6 @@ const CartScreen = ({ navigation }) => {
 
   const handleRemove = (id) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    // Encontrar el item para obtener su tipo
     const item = items.find(i => i.id === id);
     if (item) {
       removeItem(id, item.type);
@@ -58,7 +57,6 @@ const CartScreen = ({ navigation }) => {
         }
         renderItem={({ item }) => (
           <View className="bg-white rounded-3xl p-4 mb-3 shadow-xl shadow-black/10 border border-gray-100 flex-row">
-            {/* Imagen o emoji del producto */}
             {item.imagen ? (
               <Image
                 source={{ uri: item.imagen }}
@@ -127,7 +125,6 @@ const CartScreen = ({ navigation }) => {
               <Pressable
                 onPress={() => {
                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  // Mostrar información de pago
                   Alert.alert(
                     'Información de Pago',
                     `Total a pagar: $${total.toFixed(2)}\n\nMétodos de pago disponibles:\n• Tarjeta de crédito/débito\n• Efectivo en tienda\n• Transferencia bancaria\n\nPara completar tu compra, acércate a la caja con este resumen.`,
