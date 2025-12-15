@@ -327,7 +327,7 @@ const SplashScreen = ({ onFinish }) => {
         </Animated.View>
 
         {/* Tres iconos con animación en cascada */}
-        <View className="flex-row space-x-6 mb-16">
+        <View className="flex-row justify-between mb-16 w-full px-12">
           <Animated.View
             style={{
               opacity: icon1Anim,
@@ -340,9 +340,9 @@ const SplashScreen = ({ onFinish }) => {
               ],
             }}
           >
-            <View className="bg-white/25 w-20 h-20 rounded-3xl items-center justify-center shadow-xl border-2 border-white/40">
-              <Text className="text-4xl">📚</Text>
-              <Text className="text-white text-xs font-montserrat mt-1">Librería</Text>
+            <View className="bg-white/25 w-24 h-24 rounded-3xl items-center justify-center shadow-xl border-2 border-white/40">
+              <Text className="text-5xl">📚</Text>
+              <Text className="text-white text-xs font-montserrat mt-2">Librería</Text>
             </View>
           </Animated.View>
           
@@ -358,9 +358,9 @@ const SplashScreen = ({ onFinish }) => {
               ],
             }}
           >
-            <View className="bg-white/25 w-20 h-20 rounded-3xl items-center justify-center shadow-xl border-2 border-white/40">
-              <Text className="text-4xl">💼</Text>
-              <Text className="text-white text-xs font-montserrat mt-1">Trabajo</Text>
+            <View className="bg-white/25 w-24 h-24 rounded-3xl items-center justify-center shadow-xl border-2 border-white/40">
+              <Text className="text-5xl">💼</Text>
+              <Text className="text-white text-xs font-montserrat mt-2">Trabajo</Text>
             </View>
           </Animated.View>
           
@@ -376,9 +376,9 @@ const SplashScreen = ({ onFinish }) => {
               ],
             }}
           >
-            <View className="bg-white/25 w-20 h-20 rounded-3xl items-center justify-center shadow-xl border-2 border-white/40">
-              <Text className="text-4xl">☕</Text>
-              <Text className="text-white text-xs font-montserrat mt-1">Café</Text>
+            <View className="bg-white/25 w-24 h-24 rounded-3xl items-center justify-center shadow-xl border-2 border-white/40">
+              <Text className="text-5xl">☕</Text>
+              <Text className="text-white text-xs font-montserrat mt-2">Café</Text>
             </View>
           </Animated.View>
         </View>

@@ -65,7 +65,7 @@ const CafeScreen = ({ navigation }) => {
         </View>
 
         <View className="mx-6 mt-6 mb-4">
-          <View className="bg-gradient-to-b from-amber-400 to-amber-500 rounded-3xl p-6 shadow-lg">
+          <View className="bg-white rounded-2xl p-4 shadow-md border border-gray-100">
             <View className="flex-row items-center mb-3">
               <Text className="text-3xl mr-3">🎉</Text>
               <Text className="text-amber-900 text-xl font-poppins-bold">
@@ -75,7 +75,7 @@ const CafeScreen = ({ navigation }) => {
             <Text className="text-amber-800 text-base font-montserrat mb-3">
               2x1 en cafés premium los miércoles
             </Text>
-            <View className="bg-white bg-opacity-30 rounded-xl px-4 py-2">
+            <View className="bg-amber-100 rounded-xl px-4 py-2">
               <Text className="text-amber-900 text-sm font-montserrat text-center font-bold">
                 ⏰ Solo hoy • Válido hasta las 8:00 PM
               </Text>
