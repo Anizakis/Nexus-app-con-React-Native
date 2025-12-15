@@ -100,7 +100,7 @@ function TabNavigator() {
       <Tab.Screen
         name="Cafe"
         component={CafeStack}
-        options={{ tabBarLabel: 'Café' }}
+        options={{ tabBarLabel: 'Cafetería'}}
       />
     </Tab.Navigator>
   );
