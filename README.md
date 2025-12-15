@@ -359,7 +359,7 @@ Este proyecto es parte del **Máster en Desarrollo de Aplicaciones Móviles Mult
 
 ### 🌟 ¿Te gusta el proyecto? Dale una estrella ⭐
 
-[![GitHub stars](https://img.shields.io/github/stars/TU_USUARIO/Nexus-app-React-Native?style=social)](https://github.com/TU_USUARIO/Nexus-app-React-Native)
+[![GitHub stars](https://img.shields.io/github/stars/Anizakis/Nexus-app-React-Native?style=social)](https://github.com/Anizakis/Nexus-app-React-Native)
 
 ---
 
